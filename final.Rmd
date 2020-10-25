@@ -1,0 +1,41 @@
+---
+title: "Final Project Analysis"
+author: "Charles Yang, Isaac Tegeler, Carter Wunsch, Bennet Brosseau, Nicholas Heger"
+date: "10/25/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+
+# Data was stored in CSV (Comma Delimited), but was tab delimited.
+data <- read.table("VIQT_data.csv", sep="\t", header=TRUE)
+```
+
+# Exploratory Analysis
+### Charles S1-6, education v. Full Score
+```{r}
+
+```
+
+### Isaac S7 - 12, urban v. Full Score
+```{r}
+
+```
+
+### Nicholas S13 - 18, gender v. Full Score
+```{r}
+
+```
+
+### Carter S19 - 24, engnat v. Full Score
+```{r}
+
+```
+
+### Bennet S25-30, age v. Full Score
+```{r}
+
+```
+
