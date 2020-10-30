@@ -16,7 +16,74 @@ data <- read.table("VIQT_data.csv", sep="\t", header=TRUE)
 # Exploratory Analysis
 ### Charles S1-6, education v. Full Score
 ```{r}
+data %>%
+  group_by(S1) %>%
+  summarise(`Full Score`=mean(score_full), .groups="drop") %>%
+  filter(S1 > 0) %>%
+  ggplot(aes(x=S1, y=`Full Score`)) +
+  geom_bar(stat="identity", width=.7) +
+  ggtitle("Mean Full Scores by S1 Response")
+```
 
+```{r}
+data %>%
+  group_by(S2) %>%
+  summarise(`Full Score`=mean(score_full), .groups="drop") %>%
+  filter(S2 > 0) %>%
+  ggplot(aes(x=S2, y=`Full Score`)) +
+  geom_bar(stat="identity", width=.7) +
+  ggtitle("Mean Full Scores by S2 Response")
+```
+
+```{r}
+data %>%
+  group_by(S3) %>%
+  summarise(`Full Score`=mean(score_full), .groups="drop") %>%
+  filter(S3 > 0) %>%
+  ggplot(aes(x=S3, y=`Full Score`)) +
+  geom_bar(stat="identity", width=.7) +
+  ggtitle("Mean Full Scores by S3 Response")
+```
+
+```{r}
+data %>%
+  group_by(S4) %>%
+  summarise(`Full Score`=mean(score_full), .groups="drop") %>%
+  filter(S4 > 0) %>%
+  ggplot(aes(x=S4, y=`Full Score`)) +
+  geom_bar(stat="identity", width=.7) +
+  ggtitle("Mean Full Scores by S4 Response")
+```
+
+```{r}
+data %>%
+  group_by(S5) %>%
+  summarise(`Full Score`=mean(score_full), .groups="drop") %>%
+  filter(S5 > 0) %>%
+  ggplot(aes(x=S5, y=`Full Score`)) +
+  geom_bar(stat="identity", width=.7) +
+  ggtitle("Mean Full Scores by S5 Response")
+
+```
+
+```{r}
+data %>%
+  group_by(S6) %>%
+  summarise(`Full Score`=mean(score_full), .groups="drop") %>%
+  filter(S6 > 0) %>%
+  ggplot(aes(x=S6, y=`Full Score`)) +
+  geom_bar(stat="identity", width=.7) +
+  ggtitle("Mean Full Scores by S6 Response")
+```
+
+```{r}
+data$education <- recode(data$education, `1`="< HS", `2`="HS", `3`="UNI", `4`="GRAD") %>% factor(levels=c("< HS", "HS", "UNI", "GRAD"))
+data %>%
+  group_by(education) %>%
+  summarise(`Full Score`=mean(score_full), .groups="drop") %>%
+  ggplot(aes(x=education, y=`Full Score`)) +
+  geom_bar(stat="identity", width=.7) +
+  ggtitle("Mean Full Scores by Education")
 ```
 
 ### Isaac S7 - 12, urban v. Full Score
