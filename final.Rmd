@@ -87,9 +87,27 @@ data %>%
 ```
 
 ### Isaac S7 - 12, urban v. Full Score
-```{r}
 
+We will first look a the impact of specific questions on the final score to see if there are any questons that were particullarly harder than the others.
+```{r}
+#Answer distribution for questions 7 - 12
+x <- data %>% select(Q7, Q8, Q9, Q10, Q11, Q12) %>%
+  pivot_longer(cols=Q7:Q12, names_to="question", values_to="answer")
+x$question = factor(x$question, levels=c("Q7", "Q8", "Q9", "Q10", "Q11", "Q12"))
+ggplot(x, aes(x=answer)) + geom_histogram(binwidth = 1) + facet_wrap(~question) + ggtitle("Which questons are the hardest?")
 ```
+
+Question 7 appears to be the hardest to answer as it has the largest distribution of responses. The question asked which two words have the same meaning from the following list: [ deal claim plea recoup sale ]. We also see that people are much more likely to answer this questions rather than say they don't know (there are fewer answers of 0 which indicates they did not answer the question).
+
+Next we will see if how urban of a location you live impacts the final score.
+
+```{r}
+data$urban <- recode(data$urban, `1`="Rural", `2`="Suburban", `3`="Urban", ) %>% factor(levels=c("Rural", "Suburban", "Urban"))
+
+ggplot(data, aes(x=score_full)) +geom_histogram() +facet_wrap(~urban, scales="free_y")
+```
+
+The distributions show that students in Rural and Suburban areas have similar levels of vocabulary while those in urban areas have weaker vocuabularies. Where there are even some in the rural areas that scored negativly on the test while there are none who did so in suburban and rural areas.
 
 ### Nicholas S13 - 18, gender v. Full Score
 ```{r}
