@@ -120,7 +120,86 @@ The distributions show that students in Rural and Suburban areas have similar le
 ```
 
 ### Bennet S25-30, age v. Full Score
+### S25 - I wish people were more spiritual.
 ```{r}
+data %>%
+  group_by(S25) %>%
+  summarise(`Full Score`=mean(score_full), .groups="drop") %>%
+  filter(S25 > 0) %>%
+  ggplot(aes(x=S25, y=`Full Score`)) +
+  geom_bar(stat="identity", width=.7) +
+  ggtitle("Mean Full Scores by S25 Response")
+```
+
+
+### S26 - I always do the bare minimum I need to get by.
+```{r}
+data %>%
+  group_by(S26) %>%
+  summarise(`Full Score`=mean(score_full), .groups="drop") %>%
+  filter(S26 > 0) %>%
+  ggplot(aes(x=S26, y=`Full Score`)) +
+  geom_bar(stat="identity", width=.7) +
+  ggtitle("Mean Full Scores by S26 Response")
+```
+
+
+### S27 - I like to play devils advocate.
+```{r}
+data %>%
+  group_by(S27) %>%
+  summarise(`Full Score`=mean(score_full), .groups="drop") %>%
+  filter(S27 > 0) %>%
+  ggplot(aes(x=S27, y=`Full Score`)) +
+  geom_bar(stat="identity", width=.7) +
+  ggtitle("Mean Full Scores by S27 Response")
+```
+
+
+### S28 - I am not bothered by messy people.
+```{r}
+data %>%
+  group_by(S28) %>%
+  summarise(`Full Score`=mean(score_full), .groups="drop") %>%
+  filter(S28 > 0) %>%
+  ggplot(aes(x=S28, y=`Full Score`)) +
+  geom_bar(stat="identity", width=.7) +
+  ggtitle("Mean Full Scores by S28 Response")
+```
+
+
+### S29 - I am more artistic than scientific.
+```{r}
+data %>%
+  group_by(S29) %>%
+  summarise(`Full Score`=mean(score_full), .groups="drop") %>%
+  filter(S29 > 0) %>%
+  ggplot(aes(x=S29, y=`Full Score`)) +
+  geom_bar(stat="identity", width=.7) +
+  ggtitle("Mean Full Scores by S29 Response")
 
 ```
 
+
+### S30 - I am not quite sure what I want.
+```{r}
+data %>%
+  group_by(S30) %>%
+  summarise(`Full Score`=mean(score_full), .groups="drop") %>%
+  filter(S30 > 0) %>%
+  ggplot(aes(x=S30, y=`Full Score`)) +
+  geom_bar(stat="identity", width=.7) +
+  ggtitle("Mean Full Scores by S30 Response")
+```
+
+
+### Mean Full Scores by Age
+```{r}
+data %>%
+  group_by(age) %>%
+  summarise(`Full Score`=mean(score_full), .groups="drop") %>%
+  filter(age < 100) %>%
+  ggplot(aes(x=age, y=`Full Score`)) +
+  geom_bar(stat="identity", width=.7) +
+  ggtitle("Mean Full Scores by Age")
+```
