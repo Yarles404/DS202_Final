@@ -111,7 +111,69 @@ The distributions show that students in Rural and Suburban areas have similar le
 
 ### Nicholas S13 - 18, gender v. Full Score
 ```{r}
+data %>%
+  group_by(S13) %>%
+  summarise(`Full Score`=mean(score_full), .groups="drop") %>%
+  filter(S13 > 0) %>%
+  ggplot(aes(x=S13, y=`Full Score`)) +
+  geom_bar(stat="identity", width=.7) +
+  ggtitle("Mean Full Scores by S13 Response") +
+  xlab('Response (1=Disagree, 5=Agree)')
+```
 
+```{r}
+data %>%
+  group_by(S14) %>%
+  summarise(`Full Score`=mean(score_full), .groups="drop") %>%
+  filter(S14 > 0) %>%
+  ggplot(aes(x=S14, y=`Full Score`)) +
+  geom_bar(stat="identity", width=.7) +
+  ggtitle("Mean Full Scores by S14 Response") +
+  xlab('Response (1=Disagree, 5=Agree)')
+```
+
+```{r}
+data %>%
+  group_by(S15) %>%
+  summarise(`Full Score`=mean(score_full), .groups="drop") %>%
+  filter(S15 > 0) %>%
+  ggplot(aes(x=S15, y=`Full Score`)) +
+  geom_bar(stat="identity", width=.7) +
+  ggtitle("Mean Full Scores by S15 Response") +
+  xlab('Response (1=Disagree, 5=Agree)')
+```
+
+```{r}
+data %>%
+  group_by(S16) %>%
+  summarise(`Full Score`=mean(score_full), .groups="drop") %>%
+  filter(S16 > 0) %>%
+  ggplot(aes(x=S16, y=`Full Score`)) +
+  geom_bar(stat="identity", width=.7) +
+  ggtitle("Mean Full Scores by S16 Response") +
+  xlab('Response (1=Disagree, 5=Agree)')
+```
+
+```{r}
+data %>%
+  group_by(S17) %>%
+  summarise(`Full Score`=mean(score_full), .groups="drop") %>%
+  filter(S17 > 0) %>%
+  ggplot(aes(x=S17, y=`Full Score`)) +
+  geom_bar(stat="identity", width=.7) +
+  ggtitle("Mean Full Scores by S17 Response") +
+  xlab('Response (1=Disagree, 5=Agree)')
+```
+
+```{r}
+data %>%
+  group_by(S18) %>%
+  summarise(`Full Score`=mean(score_full), .groups="drop") %>%
+  filter(S18 > 0) %>%
+  ggplot(aes(x=S18, y=`Full Score`)) +
+  geom_bar(stat="identity", width=.7) +
+  ggtitle("Mean Full Scores by S18 Response") +
+  xlab('Response (1=Disagree, 5=Agree)')
 ```
 
 ### Carter S19 - 24, engnat v. Full Score
