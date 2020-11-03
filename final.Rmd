@@ -86,6 +86,9 @@ data %>%
   ggtitle("Mean Full Scores by Education")
 ```
 
+### Notes
+* Education has a strong positive correlation with Scores
+
 ### Isaac S7 - 12, urban v. Full Score
 
 We will first look a the impact of specific questions on the final score to see if there are any questons that were particullarly harder than the others.
@@ -200,6 +203,6 @@ data %>%
   summarise(`Full Score`=mean(score_full), .groups="drop") %>%
   filter(age < 100) %>%
   ggplot(aes(x=age, y=`Full Score`)) +
-  geom_bar(stat="identity", width=.7) +
+  geom_line(stat="identity", width=.7) +
   ggtitle("Mean Full Scores by Age")
 ```
