@@ -236,7 +236,53 @@ data %>%
 
 ### Carter S19 - 24, engnat v. Full Score
 ```{r}
+group_by(data, S19) %>%
+  summarise(`Full Score` = mean(score_full), .groups = 'drop') %>%
+  filter(S19 > 0) %>%
+  ggplot(aes(x = S19, y = `Full Score`)) +
+  geom_bar(stat = 'identity', width = 0.7) +
+  ggtitle("Mean Full Scores by S19 Response") +
+  xlab('Response (1 = Disagree, 5 = Agree)')
 
+group_by(data, S20) %>%
+  summarise(`Full Score` = mean(score_full), .groups = 'drop') %>%
+  filter(S20 > 0) %>%
+  ggplot(aes(x = S20, y = `Full Score`)) +
+  geom_bar(stat = 'identity', width = 0.7) +
+  ggtitle("Mean Full Scores by S20 Response") +
+  xlab('Response (1 = Disagree, 5 = Agree)')
+
+group_by(data, S21) %>%
+  summarise(`Full Score` = mean(score_full), .groups = 'drop') %>%
+  filter(S21 > 0) %>%
+  ggplot(aes(x = S21, y = `Full Score`)) +
+  geom_bar(stat = 'identity', width = 0.7) +
+  ggtitle("Mean Full Scores by S21 Response") +
+  xlab('Response (1 = Disagree, 5 = Agree)')
+
+group_by(data, S22) %>%
+  summarise(`Full Score` = mean(score_full), .groups = 'drop') %>%
+  filter(S22 > 0) %>%
+  ggplot(aes(x = S22, y = `Full Score`)) +
+  geom_bar(stat = 'identity', width = 0.7) +
+  ggtitle("Mean Full Scores by S22 Response") +
+  xlab('Response (1 = Disagree, 5 = Agree)')
+
+group_by(data, S23) %>%
+  summarise(`Full Score` = mean(score_full), .groups = 'drop') %>%
+  filter(S23 > 0) %>%
+  ggplot(aes(x = S23, y = `Full Score`)) +
+  geom_bar(stat = 'identity', width = 0.7) +
+  ggtitle("Mean Full Scores by S23 Response") +
+  xlab('Response (1 = Disagree, 5 = Agree)')
+
+group_by(data, S24) %>%
+  summarise(`Full Score` = mean(score_full), .groups = 'drop') %>%
+  filter(S24 > 0) %>%
+  ggplot(aes(x = S24, y = `Full Score`)) +
+  geom_bar(stat = 'identity', width = 0.7) +
+  ggtitle("Mean Full Scores by S24 Response") +
+  xlab('Response (1 = Disagree, 5 = Agree)')
 ```
 
 ### Bennet S25-30, age v. Full Score
