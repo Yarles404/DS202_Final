@@ -301,7 +301,7 @@ group_by(data, engnat) %>%
   ggplot(aes(x = engnat, y = `Full Score`, fill = engnat)) + 
   geom_bar(stat = 'identity') +
   ggtitle("Mean Full Scores by Native English Speakers") +
-  xlab("Is Your Native Language English?")
+  xlab("Native English Speaker")
 ```
 
 ### Bennet S25-30, age v. Full Score
