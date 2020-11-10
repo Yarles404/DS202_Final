@@ -123,6 +123,27 @@ ggplot(x, aes(x=answer)) + geom_histogram(binwidth = 1) + facet_wrap(~question) 
 
 Question 7 appears to be the hardest to answer as it has the largest distribution of responses. The question asked which two words have the same meaning from the following list: [ deal claim plea recoup sale ]. We also see that people are much more likely to answer this questions rather than say they don't know (there are fewer answers of 0 which indicates they did not answer the question).
 
+Which supplimental affect the final score the most?
+```{r}
+x <- data %>% select(S7, S8, S9, S10, S11, S12, score_full) %>%
+  pivot_longer(cols=S7:S12, names_to="question", values_to="answer")
+x$question = factor(x$question, levels=c("S7", "S8", "S9", "S10", "S11", "S12"))
+x <- x%>%filter(answer!=0)
+ggplot(x%>%filter(question=="S7"), aes(x=score_full)) + geom_histogram() + facet_wrap(~answer, scales="free_y")
+ggplot(x%>%filter(question=="S8"), aes(x=score_full)) + geom_histogram() + facet_wrap(~answer, scales="free_y")
+ggplot(x%>%filter(question=="S9"), aes(x=score_full)) + geom_histogram() + facet_wrap(~answer, scales="free_y")
+ggplot(x%>%filter(question=="S10"), aes(x=score_full)) + geom_histogram() + facet_wrap(~answer, scales="free_y")
+ggplot(x%>%filter(question=="S11"), aes(x=score_full)) + geom_histogram() + facet_wrap(~answer, scales="free_y")
+ggplot(x%>%filter(question=="S12"), aes(x=score_full)) + geom_histogram() + facet_wrap(~answer, scales="free_y")
+
+avgs <- x %>% 
+  group_by(question, answer) %>%
+  summarise(avgs = mean(score_full)) %>%
+  ungroup()
+
+ggplot(avgs, aes(x=answer, y=avgs)) + geom_bar(stat="identity") + facet_wrap(~question)
+```
+
 Next we will see if how urban of a location you live impacts the final score.
 
 ```{r}
@@ -132,6 +153,19 @@ ggplot(data, aes(x=score_full)) +geom_histogram() +facet_wrap(~urban, scales="fr
 ```
 
 The distributions show that students in Rural and Suburban areas have similar levels of vocabulary while those in urban areas have weaker vocuabularies. Where there are even some in the rural areas that scored negativly on the test while there are none who did so in suburban and rural areas.
+
+
+Are there correlations between the questions? i.e. if a person marks agree on one question they are likely to mark agree on another.
+
+```{r}
+x <- data %>% select(S1:S30)
+
+c <- cor(x)
+c <- data.frame(Var1 = row.names(c), c)
+c <- c %>% pivot_longer(cols=S1:S30, names_to="Var2", values_to="value")
+
+ggplot(c,aes(x=Var1, y=Var2, fill=value)) + geom_tile() + scale_fill_distiller(palette='YlGn')
+```
 
 ### Nicholas S13 - 18, gender v. Full Score
 ```{r}
