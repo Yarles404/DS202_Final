@@ -283,6 +283,15 @@ group_by(data, S24) %>%
   geom_bar(stat = 'identity', width = 0.7) +
   ggtitle("Mean Full Scores by S24 Response") +
   xlab('Response (1 = Disagree, 5 = Agree)')
+
+group_by(data, engnat) %>%
+  summarise(`Full Score` = mean(score_full), .groups = 'drop') %>%
+  filter(engnat > 0) %>%
+  mutate(engnat = ifelse(engnat == 1, "Yes", "No")) %>%
+  ggplot(aes(x = engnat, y = `Full Score`, fill = engnat)) + 
+  geom_bar(stat = 'identity') +
+  ggtitle("Mean Full Scores by Native English Speakers") +
+  xlab("Is Your Native Language English?")
 ```
 
 ### Bennet S25-30, age v. Full Score
