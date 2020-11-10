@@ -234,6 +234,16 @@ data %>%
   xlab('Response (1=Disagree, 5=Agree)')
 ```
 
+```{r}
+dataGender <- data
+dataGender$gender <- as.factor(dataGender$gender)
+levels(dataGender$gender)[levels(dataGender$gender)==0] <- 'Did not answer'
+levels(dataGender$gender)[levels(dataGender$gender)==1] <- 'Male'
+levels(dataGender$gender)[levels(dataGender$gender)==2] <- 'Female'
+levels(dataGender$gender)[levels(dataGender$gender)==3] <- 'Other'
+ggplot(dataGender, aes(x=gender, y=score_full)) + geom_boxplot() + ggtitle('Gender vs Full Score') + xlab('Gender') + ylab('Full Score')
+```
+
 ### Carter S19 - 24, engnat v. Full Score
 ```{r}
 group_by(data, S19) %>%
