@@ -289,3 +289,74 @@ data %>%
   geom_line(stat="identity", width=.7) +
   ggtitle("Mean Full Scores by Age")
 ```
+
+
+### Linear Regression of the most impactful suplemental questions.
+Out of all 30 Supplemental Questions, S5, S15, S16, S25, S26, S27 seemed to be the most impactful.
+
+S5 = I would be interested in getting my fortune told.
+```{r}
+data %>%
+  group_by(S5) %>%
+  summarise(`Full Score`=mean(score_full), .groups="drop") %>%
+  filter(S5 > 0) %>%
+  ggplot(aes(x=S5, y=`Full Score`)) +
+  geom_point() +
+  stat_smooth(method = "lm", col = "red")
+```
+
+S15 = I have kept a personal journal.
+```{r}
+data %>%
+  group_by(S15) %>%
+  summarise(`Full Score`=mean(score_full), .groups="drop") %>%
+  filter(S15 > 0) %>%
+  ggplot(aes(x=S15, y=`Full Score`)) +
+  geom_point() +
+  stat_smooth(method = "lm", col = "red")
+```
+
+S16 = I have lots of my own theories.
+```{r}
+data %>%
+  group_by(S16) %>%
+  summarise(`Full Score`=mean(score_full), .groups="drop") %>%
+  filter(S16 > 0) %>%
+  ggplot(aes(x=S16, y=`Full Score`)) +
+  geom_point() +
+  stat_smooth(method = "lm", col = "red")
+```
+
+S25 = I wish people were more spiritual.
+```{r}
+data %>%
+  group_by(S25) %>%
+  summarise(`Full Score`=mean(score_full), .groups="drop") %>%
+  filter(S25 > 0) %>%
+  ggplot(aes(x=S25, y=`Full Score`)) +
+  geom_point() +
+  stat_smooth(method = "lm", col = "red")
+```
+
+S26 = I always do the bare minimum I need to get by.
+```{r}
+data %>%
+  group_by(S26) %>%
+  summarise(`Full Score`=mean(score_full), .groups="drop") %>%
+  filter(S26 > 0) %>%
+  ggplot(aes(x=S26, y=`Full Score`)) +
+  geom_point() +
+  stat_smooth(method = "lm", col = "red")
+```
+
+S27 = I like to play devils advocate. 
+```{r}
+data %>%
+  group_by(S27) %>%
+  summarise(`Full Score`=mean(score_full), .groups="drop") %>%
+  filter(S27 > 0) %>%
+  ggplot(aes(x=S27, y=`Full Score`)) +
+  geom_point() +
+  stat_smooth(method = "lm", col = "red")
+```
+
