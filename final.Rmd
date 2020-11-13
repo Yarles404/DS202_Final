@@ -233,6 +233,7 @@ data %>%
   xlab('Response (1=Disagree, 5=Agree)')
 ```
 
+Scores by Gender  
 ```{r}
 dataGender <- data
 dataGender$gender <- as.factor(dataGender$gender)
@@ -242,6 +243,37 @@ levels(dataGender$gender)[levels(dataGender$gender)==2] <- 'Female'
 levels(dataGender$gender)[levels(dataGender$gender)==3] <- 'Other'
 ggplot(dataGender, aes(x=gender, y=score_full)) + geom_boxplot() + ggtitle('Gender vs Full Score') + xlab('Gender') + ylab('Full Score')
 ```
+  
+From the above boxplot, we see that those who did not answer their gender had the highest median score followed by Males, Other, and then Females.  
+
+Answers to Supplemental Questions by Education  
+```{r}
+dataEducation <- data %>% 
+  filter(education > 0)
+dataEducation$education <- as.factor(dataEducation$education)
+levels(dataEducation$education)[levels(dataEducation$education)==1] <- '< High School'
+levels(dataEducation$education)[levels(dataEducation$education)==2] <- 'High School'
+levels(dataEducation$education)[levels(dataEducation$education)==3] <- 'University Degree'
+levels(dataEducation$education)[levels(dataEducation$education)==4] <- 'Graduate Degree'
+dataEducation %>%
+  filter(S26 > 0) %>%
+  group_by(education, S26) %>% 
+  summarise(count = n()) %>% 
+  ggplot(aes(x = S26, y = count, fill = education)) +
+  geom_bar(stat="identity") + ggtitle("S26 Responses by Education") +
+  xlab('Response (1=Disagree, 5=Agree)')
+dataEducation %>%
+  filter(S30 > 0) %>%
+  group_by(education, S30) %>% 
+  summarise(count = n()) %>% 
+  ggplot(aes(x = S30, y = count, fill = education)) +
+  geom_bar(stat="identity") + ggtitle("S30 Responses by Education") +
+  xlab('Response (1=Disagree, 5=Agree)')
+```
+  
+26 and 30 are slightly notable but most are not at all correlated
+
+
 
 ### Carter S19 - 24, engnat v. Full Score
 ```{r}
