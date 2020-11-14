@@ -11,6 +11,7 @@ library(tidyverse)
 
 # Data was stored in CSV (Comma Delimited), but was tab delimited.
 data <- read.table("VIQT_data.csv", sep="\t", header=TRUE)
+originalData <- data
 ```
 
 # Exploratory Analysis
@@ -166,7 +167,7 @@ c <- c %>% pivot_longer(cols=S1:S30, names_to="Var2", values_to="value")
 ggplot(c,aes(x=Var1, y=Var2, fill=value)) + geom_tile() + scale_fill_distiller(palette='YlGn')
 ```
 
-### Nicholas S13 - 18, gender v. Full Score
+### Nicholas S13 - 18, Gender vs Full Score, Answers to Supplemental Questions by Education
 ```{r}
 data %>%
   group_by(S13) %>%
@@ -248,13 +249,59 @@ From the above boxplot, we see that those who did not answer their gender had th
 
 Answers to Supplemental Questions by Education  
 ```{r}
-dataEducation <- data %>% 
+dataEducation <- originalData %>% 
   filter(education > 0)
 dataEducation$education <- as.factor(dataEducation$education)
 levels(dataEducation$education)[levels(dataEducation$education)==1] <- '< High School'
 levels(dataEducation$education)[levels(dataEducation$education)==2] <- 'High School'
 levels(dataEducation$education)[levels(dataEducation$education)==3] <- 'University Degree'
 levels(dataEducation$education)[levels(dataEducation$education)==4] <- 'Graduate Degree'
+
+x <- dataEducation %>% 
+  select(S1, S2, S3, S4, S5, S6, education) %>%
+  group_by(education, S1, S2, S3, S4, S5, S6) %>% 
+  summarise(count = n()) %>% 
+  pivot_longer(cols=S1:S6, names_to="question", values_to="answer")
+x$question = factor(x$question, levels=c("S1", "S2", "S3", "S4", "S5", "S6"))
+x <- x%>%filter(answer!=0)
+ggplot(x, aes(x=answer, y=count, fill=education)) + geom_bar(stat="identity") + facet_wrap(~question) + ggtitle("S1-S6 Responses by Education") + xlab('Response (1=Disagree, 5=Agree)')
+
+x <- dataEducation %>% 
+  select(S7, S8, S9, S10, S11, S12, education) %>%
+  group_by(education, S7, S8, S9, S10, S11, S12) %>% 
+  summarise(count = n()) %>% 
+  pivot_longer(cols=S7:S12, names_to="question", values_to="answer")
+x$question = factor(x$question, levels=c("S7", "S8", "S9", "S10", "S11", "S12"))
+x <- x%>%filter(answer!=0)
+ggplot(x, aes(x=answer, y=count, fill=education)) + geom_bar(stat="identity") + facet_wrap(~question) + ggtitle("S7-S12 Responses by Education") + xlab('Response (1=Disagree, 5=Agree)')
+
+x <- dataEducation %>% 
+  select(S13, S14, S15, S16, S17, S18, education) %>%
+  group_by(education, S13, S14, S15, S16, S17, S18) %>% 
+  summarise(count = n()) %>% 
+  pivot_longer(cols=S13:S18, names_to="question", values_to="answer")
+x$question = factor(x$question, levels=c("S13", "S14", "S15", "S16", "S17", "S18"))
+x <- x%>%filter(answer!=0)
+ggplot(x, aes(x=answer, y=count, fill=education)) + geom_bar(stat="identity") + facet_wrap(~question) + ggtitle("S13-S18 Responses by Education") + xlab('Response (1=Disagree, 5=Agree)')
+
+x <- dataEducation %>% 
+  select(S19, S20, S21, S22, S23, S24, education) %>%
+  group_by(education, S19, S20, S21, S22, S23, S24) %>% 
+  summarise(count = n()) %>% 
+  pivot_longer(cols=S19:S24, names_to="question", values_to="answer")
+x$question = factor(x$question, levels=c("S19", "S20", "S21", "S22", "S23", "S24"))
+x <- x%>%filter(answer!=0)
+ggplot(x, aes(x=answer, y=count, fill=education)) + geom_bar(stat="identity") + facet_wrap(~question) + ggtitle("S19-S24 Responses by Education") + xlab('Response (1=Disagree, 5=Agree)')
+
+x <- dataEducation %>% 
+  select(S25, S26, S27, S28, S29, S30, education) %>%
+  group_by(education, S25, S26, S27, S28, S29, S30) %>% 
+  summarise(count = n()) %>% 
+  pivot_longer(cols=S25:S30, names_to="question", values_to="answer")
+x$question = factor(x$question, levels=c("S25", "S26", "S27", "S28", "S29", "S30"))
+x <- x%>%filter(answer!=0)
+ggplot(x, aes(x=answer, y=count, fill=education)) + geom_bar(stat="identity") + facet_wrap(~question) + ggtitle("S25-S30 Responses by Education") + xlab('Response (1=Disagree, 5=Agree)')
+
 dataEducation %>%
   filter(S26 > 0) %>%
   group_by(education, S26) %>% 
@@ -262,6 +309,7 @@ dataEducation %>%
   ggplot(aes(x = S26, y = count, fill = education)) +
   geom_bar(stat="identity") + ggtitle("S26 Responses by Education") +
   xlab('Response (1=Disagree, 5=Agree)')
+
 dataEducation %>%
   filter(S30 > 0) %>%
   group_by(education, S30) %>% 
