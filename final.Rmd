@@ -1,7 +1,7 @@
 ---
 title: "Final Project Analysis"
 author: "Charles Yang, Isaac Tegeler, Carter Wunsch, Bennet Brosseau, Nicholas Heger"
-date: "10/25/2020"
+date: "11/16/2020"
 output: html_document
 ---
 
@@ -167,7 +167,10 @@ c <- c %>% pivot_longer(cols=S1:S30, names_to="Var2", values_to="value")
 ggplot(c,aes(x=Var1, y=Var2, fill=value)) + geom_tile() + scale_fill_distiller(palette='YlGn')
 ```
 
-### Nicholas S13 - 18, Gender vs Full Score, Answers to Supplemental Questions by Education
+### Nicholas S13 - 18, Gender vs Full Score, Answers to Supplemental Questions by Education  
+The next set of supplemental questions we looked at were S13-S18. Similar to before, we have plotted the responses to each of these questions on the x-axis and the mean full score on the y-axis.  
+
+###### I have been very interested in historical wars  
 ```{r}
 data %>%
   group_by(S13) %>%
@@ -178,7 +181,8 @@ data %>%
   ggtitle("Mean Full Scores by S13 Response") +
   xlab('Response (1=Disagree, 5=Agree)')
 ```
-
+  
+###### I think ancient philosophy still is meaningful today  
 ```{r}
 data %>%
   group_by(S14) %>%
@@ -189,7 +193,8 @@ data %>%
   ggtitle("Mean Full Scores by S14 Response") +
   xlab('Response (1=Disagree, 5=Agree)')
 ```
-
+  
+###### I have kept a personal journal  
 ```{r}
 data %>%
   group_by(S15) %>%
@@ -200,7 +205,8 @@ data %>%
   ggtitle("Mean Full Scores by S15 Response") +
   xlab('Response (1=Disagree, 5=Agree)')
 ```
-
+  
+###### I have lots of my own theories  
 ```{r}
 data %>%
   group_by(S16) %>%
@@ -211,7 +217,8 @@ data %>%
   ggtitle("Mean Full Scores by S16 Response") +
   xlab('Response (1=Disagree, 5=Agree)')
 ```
-
+  
+###### I could do an impressive amount of push ups  
 ```{r}
 data %>%
   group_by(S17) %>%
@@ -222,7 +229,8 @@ data %>%
   ggtitle("Mean Full Scores by S17 Response") +
   xlab('Response (1=Disagree, 5=Agree)')
 ```
-
+  
+###### I put work first  
 ```{r}
 data %>%
   group_by(S18) %>%
@@ -233,6 +241,8 @@ data %>%
   ggtitle("Mean Full Scores by S18 Response") +
   xlab('Response (1=Disagree, 5=Agree)')
 ```
+  
+We can see that answers to most of the above supplemental questions do not strongly correspond to higher or lower full scores. S13, S15, S17, S18 in particular have very little...  
 
 Scores by Gender  
 ```{r}
